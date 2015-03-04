@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:index]
-  
+
   def index
     # FIXME: add sorting options
     @songs = Song.all
