@@ -9,5 +9,5 @@ Rails.application.routes.draw do
 
   # post '/songs/:id/veto' => 'songs#veto'
 
-  root 'application#home'
+  root 'songs#index'
 end
