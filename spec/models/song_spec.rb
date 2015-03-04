@@ -16,4 +16,17 @@ describe Song do
       Song.create!
     end.to raise_error ActiveRecord::RecordInvalid
   end
+
+  it "knows how to sort by letter" do
+    { 
+      "The The"            => "T",
+      "Aerosmith"          => "A",
+      "A Perfect Circle"   => "P",
+      "blink-182"          => "B",
+      "An Other Albatross" => "O"
+    }.each do |name, expect_letter|
+      s = Song.new artist: name
+      expect(s.sort_letter).to eq expect_letter
+    end
+  end
 end
