@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :votes
+  
   def veto! song
     # song.update vetoed: true
     song.vetoed = true

@@ -1,6 +1,11 @@
 class Song < ActiveRecord::Base
   belongs_to :user
 
+  has_many :votes
+
+  has_many :playlist_songs
+  has_many :playlists, through: :playlist_songs
+
   validates_presence_of :title, :artist
 
   def self.unvetoed
