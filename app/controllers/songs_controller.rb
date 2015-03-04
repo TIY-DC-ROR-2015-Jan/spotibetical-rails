@@ -17,4 +17,10 @@ class SongsController < ApplicationController
       render :new
     end
   end
+
+  def veto
+    song = Song.find params[:song_id]
+    current_user.veto! song
+    redirect_to :back, notice: "You vetoed #{song.title}"
+  end
 end

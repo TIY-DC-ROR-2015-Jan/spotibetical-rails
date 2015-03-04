@@ -18,8 +18,11 @@
 <% end %>
 
 <div class="container">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <% flash.each do |flash_type, message| %>
+    <div class="alert alert-<%= translate_to_bootstrap flash_type %>">
+      <%= message %>
+    </div>
+  <% end %>
 
   <%= yield %>
 </div>

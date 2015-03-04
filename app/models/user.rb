@@ -17,4 +17,11 @@ class User < ActiveRecord::Base
     # should fetch from spotify
     songs.new spotify_id: spotify_id, artist: SecureRandom.hex(12), title: SecureRandom.hex(12)
   end
+
+  def vote_for song
+    if votes_left > 0
+      votes.create! song: song
+      update votes_left: votes_left - 1
+    end
+  end
 end
