@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304145622) do
+ActiveRecord::Schema.define(version: 20150304150528) do
+
+  create_table "songs", force: :cascade do |t|
+    t.string   "artist"
+    t.string   "title"
+    t.integer  "user_id"
+    t.string   "spotify_id"
+    t.boolean  "vetoed",       default: false, null: false
+    t.string   "play_link"
+    t.string   "preview_link"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "songs", ["user_id"], name: "index_songs_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
