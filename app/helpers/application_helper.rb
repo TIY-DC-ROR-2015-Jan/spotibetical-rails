@@ -10,4 +10,8 @@ module ApplicationHelper
       flash_class
     end
   end
+
+  def icon name
+    "<i class='glyphicon glyphicon-#{name}'></i>".html_safe
+  end
 end
