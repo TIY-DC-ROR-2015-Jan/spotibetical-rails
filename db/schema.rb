@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304150528) do
+ActiveRecord::Schema.define(version: 20150304153021) do
+
+  create_table "playlist_songs", force: :cascade do |t|
+    t.integer  "song_id"
+    t.integer  "playlist_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "playlist_songs", ["playlist_id"], name: "index_playlist_songs_on_playlist_id"
+  add_index "playlist_songs", ["song_id"], name: "index_playlist_songs_on_song_id"
+
+  create_table "playlists", force: :cascade do |t|
+    t.string   "name"
+    t.string   "spotify_link"
+    t.string   "spotify_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "songs", force: :cascade do |t|
     t.string   "artist"
@@ -44,5 +62,15 @@ ActiveRecord::Schema.define(version: 20150304150528) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "song_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "votes", ["song_id"], name: "index_votes_on_song_id"
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 
 end

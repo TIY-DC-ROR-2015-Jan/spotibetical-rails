@@ -5,10 +5,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :votes
+  has_many :songs
   
   def veto! song
     # song.update vetoed: true
     song.vetoed = true
     song.save!
+  end
+
+  def add_song spotify_id
+    # should fetch from spotify
+    songs.new spotify_id: spotify_id, artist: SecureRandom.hex(12), title: SecureRandom.hex(12)
   end
 end

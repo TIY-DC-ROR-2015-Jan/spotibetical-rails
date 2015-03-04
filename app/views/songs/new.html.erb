@@ -1,0 +1,13 @@
+<% if @song.errors.any? %>
+  <ul>
+    <% @song.errors.full_messages.each do |err| %>
+      <li><%= err %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @song do |f| %>
+  <%= f.label :spotify_id %>
+  <%= f.text_field :spotify_id, class: 'form-control' %>
+  <button class="btn btn-default">Save</button>
+<% end %>
